@@ -1,15 +1,14 @@
-package com.aye.web.model;
+package com.aye.web.dto;
 
-
-public class Role {
+public class RoleDTO {
 
     private Long id;
     private String role;
 
-    public Role() {
+    public RoleDTO() {
     }
 
-    public Role(Long id, String role) {
+    public RoleDTO(Long id, String role) {
         this.id = id;
         this.role = role;
     }

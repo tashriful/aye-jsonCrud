@@ -1,6 +1,7 @@
 package com.aye.web.repo;
 
 import com.aye.web.model.User;
+import com.aye.web.utill.DataLoader;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Repository;
@@ -14,16 +15,21 @@ import java.util.stream.Collectors;
 
 @Repository
 public class UsersRepo {
-    private final File file = new File("src/main/resources/data/users.json");
     private final ObjectMapper mapper = new ObjectMapper();
     Map<Long, User> usersMap;
 
 
-    public Map<Long, User> findAllasMap() throws Exception {
+    private final DataLoader dataLoader;
+
+    public UsersRepo(DataLoader dataLoader) {
+        this.dataLoader = dataLoader;
+    }
+
+
+    public Map<Long, User> findAllasMap(String file) throws Exception {
         usersMap = new HashMap<>();
         try {
-            mapper.readValue(file, new TypeReference<List<User>>() {
-            }).stream().map(m -> usersMap.put(m.getId(), m)).collect(Collectors.toList());
+            dataLoader.loadData(file, User.class).stream().map(m -> usersMap.put(m.getId(), m)).collect(Collectors.toList());
 
 //             mapper.readValue(file, mapper.getTypeFactory().constructCollectionType(List.class, Users.class));
 
@@ -31,14 +37,24 @@ public class UsersRepo {
             throw new Exception(e.getMessage());
         }
 
+
         return usersMap;
     }
 
-    public List<User> findAll() {
+    public List<Map<String, Map<String, User>>> findAllPrev(String file) {
         try {
-            return mapper.readValue(file, new TypeReference<List<User>>() {});
+            return mapper.readValue(file, new TypeReference<List<Map<String, Map<String, User>>>>() {
+            });
         } catch (Exception e) {
             return new ArrayList<>();
+        }
+    }
+
+    public Map<String, Map<String, Object>> findAll(String file) {
+        try {
+            return dataLoader.loadAllFromFile(file);
+        } catch (Exception e) {
+            return new HashMap<>();
         }
     }
 

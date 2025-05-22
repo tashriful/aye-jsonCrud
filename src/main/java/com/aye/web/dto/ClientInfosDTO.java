@@ -1,20 +1,19 @@
-package com.aye.web.model;
+package com.aye.web.dto;
 
-
-public class ClientInfos {
+public class ClientInfosDTO {
 
     private Long id;
     private String name;
     private String address;
     private String phNumber;
-    private Boolean status ;
-    private ClientDetails.ClientType type;
-    private User user;
+    private Boolean status;
+    private String type;
+    private UserResponseDTO user;
 
-    public ClientInfos() {
+    public ClientInfosDTO() {
     }
 
-    public ClientInfos(Long id, String name, String address, String phNumber, Boolean status, ClientDetails.ClientType type, User user) {
+    public ClientInfosDTO(Long id, String name, String address, String phNumber, Boolean status, String type, UserResponseDTO user) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -64,20 +63,19 @@ public class ClientInfos {
         this.status = status;
     }
 
-    public ClientDetails.ClientType getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(ClientDetails.ClientType type) {
+    public void setType(String type) {
         this.type = type;
     }
 
-    public User getUser() {
+    public UserResponseDTO getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserResponseDTO user) {
         this.user = user;
     }
-
 }

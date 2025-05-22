@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: crud-json
+
+
+user:
+  data:
+    file-path: src/main/resources/data/data.json

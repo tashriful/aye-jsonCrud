@@ -1,17 +1,21 @@
-package com.aye.web.model;
+package com.aye.web.dto;
 
+import com.aye.web.model.ClientDetails;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.io.Serializable;
 import java.util.Date;
 
-public class ClientServiceIdentifications implements Serializable {
-
+public class ClientServiceIdentificationsResponseDTO {
 
     private Long id;
-    private ClientInfos clientInfos;
+    private Long clientId;
     private String clientName;
+    private String clientType;
+    private Boolean clientStatus;
+    private String address;
+    private String phoneNumber;
+
     private byte[] imgFile;
     @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(
@@ -25,7 +29,7 @@ public class ClientServiceIdentifications implements Serializable {
     private Date endDates;
     private String csiNumber;
     private String urlPath;
-    private ClientDetails.CsiType csiType;
+    private String csiType;
     private String colorSchema;
     private String colorSchemaApp;
     private String colorSchemaButton;
@@ -33,13 +37,20 @@ public class ClientServiceIdentifications implements Serializable {
 
     private String appVer;
 
-    public ClientServiceIdentifications() {
+    // Getters and Setters
+
+
+    public ClientServiceIdentificationsResponseDTO() {
     }
 
-    public ClientServiceIdentifications(Long id, ClientInfos clientInfos, String clientName, byte[] imgFile, Date startDates, Date endDates, String csiNumber, String urlPath, ClientDetails.CsiType csiType, String colorSchema, String colorSchemaApp, String colorSchemaButton, String iconUrl, String appVer) {
+    public ClientServiceIdentificationsResponseDTO(Long id, Long clientId, String clientName, String clientType, Boolean clientStatus, String address, String phoneNumber, byte[] imgFile, Date startDates, Date endDates, String csiNumber, String urlPath, String csiType, String colorSchema, String colorSchemaApp, String colorSchemaButton, String iconUrl, String appVer) {
         this.id = id;
-        this.clientInfos = clientInfos;
+        this.clientId = clientId;
         this.clientName = clientName;
+        this.clientType = clientType;
+        this.clientStatus = clientStatus;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
         this.imgFile = imgFile;
         this.startDates = startDates;
         this.endDates = endDates;
@@ -61,12 +72,12 @@ public class ClientServiceIdentifications implements Serializable {
         this.id = id;
     }
 
-    public ClientInfos getClientInfos() {
-        return clientInfos;
+    public Long getClientId() {
+        return clientId;
     }
 
-    public void setClientInfos(ClientInfos clientInfos) {
-        this.clientInfos = clientInfos;
+    public void setClientId(Long clientId) {
+        this.clientId = clientId;
     }
 
     public String getClientName() {
@@ -75,6 +86,38 @@ public class ClientServiceIdentifications implements Serializable {
 
     public void setClientName(String clientName) {
         this.clientName = clientName;
+    }
+
+    public String getClientType() {
+        return clientType;
+    }
+
+    public void setClientType(String clientType) {
+        this.clientType = clientType;
+    }
+
+    public Boolean getClientStatus() {
+        return clientStatus;
+    }
+
+    public void setClientStatus(Boolean clientStatus) {
+        this.clientStatus = clientStatus;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public byte[] getImgFile() {
@@ -117,11 +160,11 @@ public class ClientServiceIdentifications implements Serializable {
         this.urlPath = urlPath;
     }
 
-    public ClientDetails.CsiType getCsiType() {
+    public String getCsiType() {
         return csiType;
     }
 
-    public void setCsiType(ClientDetails.CsiType csiType) {
+    public void setCsiType(String csiType) {
         this.csiType = csiType;
     }
 
